@@ -1,10 +1,14 @@
-name: Hola Mundo
+# Nombre del workflow
+name: Aprendiendo git'hub actions
+
+# Nombre que aparece en la interfaz de usuario
+run-name: Estoy aprendiendo git'hub actions
 
 on: [push]
 
 jobs:
-  build:
+  hola-mundo:
     runs-on: ubuntu-latest
     steps:
       - name: Print Hola Mundo
-        run: echo "Hola Mund"
+        run: echo "Hola Mundo de nuevo"
