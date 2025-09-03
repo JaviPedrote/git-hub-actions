@@ -1,0 +1,52 @@
+name: trigger-workflow
+
+run-name: Aprendiendo a manejar diferentes triggers
+
+on:
+  push:
+    branches:
+      - main
+    pull_request:
+    branches:
+      - main
+      - dev
+      - feature/*
+    workflow_dispatch:
+      inputs:
+        lenguaje_favorito:
+          description: '¿Cuál es tu lenguaje de programación favorito?'
+          required: true
+          default: 'JavaScript'
+          options:
+            - JavaScript
+            - Python
+            - Java
+            - C#
+            - Go
+          description: 'Tu nombre'
+          required: true
+          default: 'Juan Pérez'
+          options:
+            - Juan Pérez
+            - María Gómez
+            - Pedro López
+            - Ana Torres
+            - Luis Hernández
+jobs:
+  example_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+      - name: Run a one-line script
+        run: echo "Hello, ${{ github.actor }}!"
+      - name: Show favorite language
+        run: echo "Your favorite programming language is ${{ github.event.inputs.lenguaje_favorito }}."
+  hola-mundo:
+    if: ${{ github.event.inputs.lenguaje_favorito == 'JavaScript' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+      - name: Run a one-line script
+        run: echo "Hello, ${{ github.actor }}!"
