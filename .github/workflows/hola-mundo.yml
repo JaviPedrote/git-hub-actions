@@ -7,4 +7,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Print Hola Mundo
-        run: echo "Hola Mundo"
+        run: echo "Hola Mund"
