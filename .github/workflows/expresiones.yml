@@ -1,34 +1,33 @@
-name: Expresiones
-
+name: Expresiones y condicionales
 on:
   workflow_dispatch:
     inputs:
       nombre:
         description: 'Tu nombre'
         required: true
-        type: string
+        type: choice
         default: 'Juan'
         options:
+          - 'Juan'
           - 'Javier'
           - 'María'
           - 'Pedro'
-    inputs:
       edad:
         description: 'Tu edad'
         required: true
-        type: number
-        default: 14
+        type: choice
+        default: "14"
         options:
-          - 16
-          - 18
-          - 21
-          - 25
-          - 30
-    inputs:
+          - "14"
+          - "16"
+          - "18"
+          - "21"
+          - "25"
+          - "30"
       lenguaje_programacion:
         description: 'Tu lenguaje de programación favorito'
         required: true
-        type: string
+        type: choice
         default: 'JavaScript'
         options:
           - 'JavaScript'
@@ -37,7 +36,7 @@ on:
           - 'C#'
           - 'Go'
 jobs:
-  nombre:
+  Mostrar_nombre:
     if: ${{ github.event.inputs.nombre == 'Javier' }}
     runs-on: ubuntu-latest
     steps:
@@ -45,15 +44,15 @@ jobs:
         uses: actions/checkout@v4
       - name: Saludo
         run: echo "Hola, mi nombre es ${{ github.event.inputs.nombre }}!"
-  edad:
-    if: ${{ github.event.inputs.edad == 18 }}
+  Mostrar_edad:
+    if: ${{ github.event.inputs.edad == '18' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Mensaje condicional
         run: echo "Solo se ejecuta porque elegiste 18, ${{ github.event.inputs.nombre }}"
-  lenguaje_programacion:
+  Mostrar_lenguaje_programacion:
     if: ${{ github.event.inputs.lenguaje_programacion == 'JavaScript' }}
     runs-on: ubuntu-latest
     steps:
